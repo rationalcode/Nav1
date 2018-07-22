@@ -50,7 +50,7 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         Chapter chapter = chapters.get(position);
-        holder.textViewNum.setText(chapter.getNum());
+        holder.textViewNum.setText(Integer.toString(chapter.getNum()));
         holder.textViewChapterTitle.setText(chapter.getChapterTitle());
         holder.textViewChapterText.setText(chapter.getChapterText());
         holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -22,11 +22,14 @@ import com.example.admin.nav1.ui.TextFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //public TextView textView;
+
     public static FragmentManager fragmentManager;
     public static FragmentTransaction fragmentTransaction;
     public static RecyclerView recyclerView;
     public static FragmentHelper fragmentHelper;
+    public static RVFagment rvFagment;
+    public static PictureFragment pictureFragment;
+    public static TextFragment textFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +48,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        rvFagment = new RVFagment();
+        pictureFragment = new PictureFragment();
+        textFragment = new TextFragment();
+
         recyclerView = findViewById(R.id.rv);
 
         fragmentHelper = new FragmentHelper(this);
 
-        //textView = findViewById(R.id.textViewRV);
 
     }
 
@@ -94,25 +100,15 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
 
             case R.id.nav_camera:
-//                fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//
-//                fragmentTransaction.replace(R.id.fragment, new PictureFragment());
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
 
-                fragmentHelper.replaceFragment(new PictureFragment());
+                TextFragment.text = "HELLO !";
+                fragmentHelper.replaceFragment(textFragment);
 
                 break;
             case R.id.nav_gallery:
 
-//                RVFagment rvFagment = new RVFagment();
-//                fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//
-//                fragmentTransaction.replace(R.id.fragment, rvFagment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
 
-                fragmentHelper.replaceFragment(new RVFagment());
+                fragmentHelper.replaceFragment(rvFagment);
 
                 break;
 
