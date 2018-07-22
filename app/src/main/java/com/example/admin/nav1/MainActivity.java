@@ -1,14 +1,10 @@
 package com.example.admin.nav1;
 
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,10 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.admin.nav1.ui.DefaultFragment;
+import com.example.admin.nav1.controller.FragmentHelper;
+import com.example.admin.nav1.ui.PictureFragment;
 import com.example.admin.nav1.ui.RVFagment;
 import com.example.admin.nav1.ui.TextFragment;
 
@@ -29,8 +24,9 @@ public class MainActivity extends AppCompatActivity
 
     //public TextView textView;
     public static FragmentManager fragmentManager;
-    public static android.support.v4.app.FragmentTransaction fragmentTransaction;
+    public static FragmentTransaction fragmentTransaction;
     public static RecyclerView recyclerView;
+    public static FragmentHelper fragmentHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +46,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         recyclerView = findViewById(R.id.rv);
+
+        fragmentHelper = new FragmentHelper(this);
 
         //textView = findViewById(R.id.textViewRV);
 
@@ -96,19 +94,25 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
 
             case R.id.nav_camera:
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//
+//                fragmentTransaction.replace(R.id.fragment, new PictureFragment());
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
 
-                fragmentTransaction.replace(R.id.fragment, new TextFragment());
-                fragmentTransaction.commit();
+                fragmentHelper.replaceFragment(new PictureFragment());
 
                 break;
             case R.id.nav_gallery:
 
-                RVFagment rvFagment = new RVFagment();
-                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                RVFagment rvFagment = new RVFagment();
+//                fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//
+//                fragmentTransaction.replace(R.id.fragment, rvFagment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
 
-                fragmentTransaction.replace(R.id.fragment, rvFagment);
-                fragmentTransaction.commit();
+                fragmentHelper.replaceFragment(new RVFagment());
 
                 break;
 
@@ -119,11 +123,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public static void replaceFragment (Fragment fragment, FragmentManager fragmentManager){
-
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment );
-        fragmentTransaction.commit();
-    }
 
 }

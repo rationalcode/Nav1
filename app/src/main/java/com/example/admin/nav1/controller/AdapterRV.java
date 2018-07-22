@@ -2,7 +2,10 @@ package com.example.admin.nav1.controller;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,11 +20,10 @@ import com.example.admin.nav1.model.Chapter;
 import com.example.admin.nav1.ui.TextFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.example.admin.nav1.MainActivity.fragmentManager;
-import static com.example.admin.nav1.MainActivity.fragmentTransaction;
-import static com.example.admin.nav1.MainActivity.replaceFragment;
+
+import static com.example.admin.nav1.MainActivity.fragmentHelper;
+
 
 
 public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
@@ -48,19 +50,21 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         Chapter chapter = chapters.get(position);
-        holder.textView.setText(chapter.getChapterText());
+        holder.textViewNum.setText(chapter.getNum());
+        holder.textViewChapterTitle.setText(chapter.getChapterTitle());
+        holder.textViewChapterText.setText(chapter.getChapterText());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
+                TextFragment.text = Integer.toString(position);
                 TextFragment textFragment = new TextFragment();
-//                TextView textView = textFragment.getView().findViewById(R.id.textView);
-//                textView.setText(position);
-                FragmentManager fragmentManager = view.
 
-                replaceFragment(textFragment, fragmentManager);
+                fragmentHelper.replaceFragment(textFragment);
 
-                Toast.makeText(view.getContext(),""+ position, Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(view.getContext(),""+ position, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -73,10 +77,15 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+         TextView textViewNum;
+         TextView textViewChapterTitle;
+         TextView textViewChapterText;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textViewRV);
+            textViewNum = itemView.findViewById(R.id.textViewNum);
+            textViewChapterTitle = itemView.findViewById(R.id.textViewChapterTitle);
+            textViewChapterText = itemView.findViewById(R.id.textViewChapterText);
 
         }
     }
