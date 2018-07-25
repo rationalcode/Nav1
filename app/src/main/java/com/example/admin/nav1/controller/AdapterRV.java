@@ -59,6 +59,7 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
 
 
                 TextFragment.text = Integer.toString(position);
+                TextFragment.addButton = true;
                 TextFragment textFragment = new TextFragment();
 
                 fragmentHelper.replaceFragment(textFragment);

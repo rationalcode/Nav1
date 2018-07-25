@@ -23,9 +23,10 @@ public class FragmentHelper extends FragmentActivity {
     public void replaceFragment (Fragment fragment){
 
         fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction
+                    .replace(R.id.fragment, fragment)
+                    .addToBackStack(null)
+                    .commit();
 
     }
 

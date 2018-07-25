@@ -18,8 +18,15 @@ import static com.example.admin.nav1.MainActivity.rvFagment;
 
 public class TextFragment extends Fragment {
 
+
     public static String text = "HELLO";
     public static FloatingActionButton fab;
+    public static boolean addButton = false;
+
+    public static void setText(String text) {
+        TextFragment.text = text;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,13 +39,20 @@ public class TextFragment extends Fragment {
 
         fab = view.findViewById(R.id.floatingActionButton);
 
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        fragmentHelper.replaceFragment(rvFagment);
-                    }
-                });
+        if (addButton) {
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fragmentHelper.replaceFragment(rvFagment);
+                }
+            });
+        }
+
+        else fab.hide();
 
         return view;
     }
+
+
 }

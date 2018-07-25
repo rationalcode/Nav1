@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,11 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.admin.nav1.controller.FragmentHelper;
+import com.example.admin.nav1.ui.ChapterDialogFragment;
 import com.example.admin.nav1.ui.PictureFragment;
 import com.example.admin.nav1.ui.RVFagment;
 import com.example.admin.nav1.ui.TextFragment;
+
+import static com.example.admin.nav1.ui.TextFragment.addButton;
+import static com.example.admin.nav1.ui.TextFragment.setText;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     public static RVFagment rvFagment;
     public static PictureFragment pictureFragment;
     public static TextFragment textFragment;
+    public static ChapterDialogFragment chapterDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView = findViewById(R.id.rv);
 
         fragmentHelper = new FragmentHelper(this);
+        chapterDialogFragment = new ChapterDialogFragment();
 
 
     }
@@ -101,8 +111,11 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_camera:
 
-                TextFragment.text = "HELLO !";
-                fragmentHelper.replaceFragment(textFragment);
+
+                //TextFragment.text = "HELLO !";
+                //fragmentHelper.replaceFragment(chapterDialogFragment);
+
+                chapterDialogFragment.show(getSupportFragmentManager(),"dialog_fragment");
 
                 break;
             case R.id.nav_gallery:
@@ -120,4 +133,13 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    public void onUserSelectValue(Integer selectedValue) {
+
+        addButton = false;
+        setText (Integer.toString(selectedValue));
+
+        fragmentHelper.replaceFragment(new TextFragment());
+
+        //selected item from 0
+    }
 }
