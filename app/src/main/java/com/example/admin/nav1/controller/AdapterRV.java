@@ -20,6 +20,7 @@ import com.example.admin.nav1.model.Chapter;
 import com.example.admin.nav1.ui.TextFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import static com.example.admin.nav1.MainActivity.fragmentHelper;
@@ -30,9 +31,9 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
 
     public static String TAG;
     private LayoutInflater inflater;
-    public ArrayList<Chapter> chapters;
+    public List<Chapter> chapters;
 
-    public AdapterRV(Context context, ArrayList<Chapter> chapters) {
+    public AdapterRV(Context context, List<Chapter> chapters) {
         this.chapters = chapters;
         this.inflater = LayoutInflater.from(context);
     }

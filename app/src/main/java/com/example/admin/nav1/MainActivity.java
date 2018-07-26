@@ -1,5 +1,6 @@
 package com.example.admin.nav1;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.admin.nav1.controller.FragmentHelper;
+import com.example.admin.nav1.model.ChapterRoomDatabase;
 import com.example.admin.nav1.ui.ChapterDialogFragment;
 import com.example.admin.nav1.ui.PictureFragment;
 import com.example.admin.nav1.ui.RVFagment;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    Context context;
     public static FragmentManager fragmentManager;
     public static FragmentTransaction fragmentTransaction;
     public static RecyclerView recyclerView;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     public static PictureFragment pictureFragment;
     public static TextFragment textFragment;
     public static ChapterDialogFragment chapterDialogFragment;
+    public static ChapterRoomDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,10 @@ public class MainActivity extends AppCompatActivity
         fragmentHelper = new FragmentHelper(this);
         chapterDialogFragment = new ChapterDialogFragment();
 
+        if(db==null) {
+
+            db = ChapterRoomDatabase.getDatabase(this);
+        }
 
     }
 
