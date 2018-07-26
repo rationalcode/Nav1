@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import java.util.List;
 
-class PopulateDB extends AsyncTask{
+public class PopulateDB extends AsyncTask{
 
     private ChapterDao chapterDao;
 

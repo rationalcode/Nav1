@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.example.admin.nav1.controller.FragmentHelper;
 import com.example.admin.nav1.model.ChapterRoomDatabase;
+import com.example.admin.nav1.model.PopulateDB;
 import com.example.admin.nav1.ui.ChapterDialogFragment;
 import com.example.admin.nav1.ui.PictureFragment;
 import com.example.admin.nav1.ui.RVFagment;
@@ -69,6 +70,11 @@ public class MainActivity extends AppCompatActivity
 
         fragmentHelper = new FragmentHelper(this);
         chapterDialogFragment = new ChapterDialogFragment();
+
+//        if (savedInstanceState==null){
+//
+//            fragmentHelper.replaceFragment (pictureFragment);
+//        }
 
         if(db==null) {
 
