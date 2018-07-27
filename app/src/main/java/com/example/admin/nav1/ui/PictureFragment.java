@@ -12,6 +12,7 @@ import com.example.admin.nav1.R;
 
 public class PictureFragment extends Fragment {
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

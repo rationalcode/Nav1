@@ -27,6 +27,7 @@ public class TextFragment extends Fragment {
         TextFragment.text = text;
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

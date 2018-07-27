@@ -4,6 +4,9 @@ import android.os.AsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import static java.lang.String.valueOf;
 
 public class PopulateDB extends AsyncTask{
 
@@ -17,8 +20,8 @@ public class PopulateDB extends AsyncTask{
     protected Object doInBackground(Object[] objects) {
 
         List<Chapter> chapterList = new ArrayList<>();
-        for (int i = 0; i <15 ; i++) {
-            chapterList.add(new Chapter(i,"Chapter "+i, " ueiugfieg"));
+        for (int i = 1; i <21 ; i++) {
+            chapterList.add(new Chapter(i,"Глава "+i, " Термины"));
         }
 
         chapterDao.insertAll(chapterList);

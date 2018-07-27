@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.example.admin.nav1.R;
 
 public class DefaultFragment extends Fragment {
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

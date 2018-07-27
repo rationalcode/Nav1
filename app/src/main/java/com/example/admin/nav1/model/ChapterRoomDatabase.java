@@ -24,19 +24,18 @@ public abstract class ChapterRoomDatabase extends RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ChapterRoomDatabase.class, "info_database")
                             .allowMainThreadQueries()
-                            .addCallback(rdc)
                             .build();
 
                 }
             }
         }
 
-        //Toast.makeText(context,"create DB",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"create INSTANCE",Toast.LENGTH_SHORT).show();
         return INSTANCE;
 
     }
 
-    static RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
+    public static RoomDatabase.Callback rdc = new RoomDatabase.Callback() {
         public void onCreate (SupportSQLiteDatabase db) {
             // do something after database has been created
         }

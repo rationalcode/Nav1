@@ -1,6 +1,9 @@
 package com.example.admin.nav1;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,6 +30,7 @@ import com.example.admin.nav1.ui.PictureFragment;
 import com.example.admin.nav1.ui.RVFagment;
 import com.example.admin.nav1.ui.TextFragment;
 
+import static com.example.admin.nav1.model.ChapterRoomDatabase.rdc;
 import static com.example.admin.nav1.ui.TextFragment.addButton;
 import static com.example.admin.nav1.ui.TextFragment.setText;
 
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity
     public static TextFragment textFragment;
     public static ChapterDialogFragment chapterDialogFragment;
     public static ChapterRoomDatabase db;
+    SharedPreferences preferences;
+    final String DB_CREATED = "db_room";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,15 +77,23 @@ public class MainActivity extends AppCompatActivity
         fragmentHelper = new FragmentHelper(this);
         chapterDialogFragment = new ChapterDialogFragment();
 
-//        if (savedInstanceState==null){
-//
-//            fragmentHelper.replaceFragment (pictureFragment);
-//        }
 
-        if(db==null) {
+        String currentPreferences = getPreferences(MODE_PRIVATE).getString(DB_CREATED,"");
+
+        if(currentPreferences.compareTo("room_db")!=0) {
+
 
             db = ChapterRoomDatabase.getDatabase(this);
-        }
+            SupportSQLiteDatabase supportSQLiteDatabase = db.getOpenHelper().getWritableDatabase();
+
+            rdc.onOpen(supportSQLiteDatabase);
+
+            preferences = getPreferences(MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(DB_CREATED,"room_db");
+            editor.commit();
+        } else db = ChapterRoomDatabase.getDatabase(this);
+
 
     }
 
@@ -125,9 +139,6 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_camera:
 
-
-                //TextFragment.text = "HELLO !";
-                //fragmentHelper.replaceFragment(chapterDialogFragment);
 
                 chapterDialogFragment.show(getSupportFragmentManager(),"dialog_fragment");
 

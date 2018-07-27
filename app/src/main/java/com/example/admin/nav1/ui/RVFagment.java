@@ -23,7 +23,6 @@ import static com.example.admin.nav1.MainActivity.recyclerView;
 public class RVFagment extends android.support.v4.app.Fragment {
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
