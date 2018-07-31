@@ -19,7 +19,7 @@ import static com.example.admin.nav1.MainActivity.rvFagment;
 public class TextFragment extends Fragment {
 
 
-    public static String text = "HELLO";
+    public static String text = "HELLO !";
     public static FloatingActionButton fab;
     public static boolean addButton = false;
 

@@ -13,10 +13,11 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.example.admin.nav1.ui.PictureFragment"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp" />
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
 </android.widget.LinearLayout>

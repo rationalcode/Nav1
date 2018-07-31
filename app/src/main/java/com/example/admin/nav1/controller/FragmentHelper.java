@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.example.admin.nav1.MainActivity;
 import com.example.admin.nav1.R;
+import com.example.admin.nav1.ui.TextFragment;
 
 
 public class FragmentHelper extends FragmentActivity {
@@ -24,9 +25,13 @@ public class FragmentHelper extends FragmentActivity {
 
         fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
         fragmentTransaction
-                    .replace(R.id.fragment, fragment)
-                    .addToBackStack(null)
-                    .commit();
+                    .replace(R.id.container, fragment)
+                    .addToBackStack(null);
+
+//        if(fragment instanceof TextFragment) {
+//                    fragmentTransaction.addToBackStack(null);
+//        }
+                    fragmentTransaction.commit();
 
     }
 

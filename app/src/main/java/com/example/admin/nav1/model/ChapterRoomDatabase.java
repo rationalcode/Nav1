@@ -30,7 +30,7 @@ public abstract class ChapterRoomDatabase extends RoomDatabase {
             }
         }
 
-        Toast.makeText(context,"create INSTANCE",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"create INSTANCE",Toast.LENGTH_SHORT).show();
         return INSTANCE;
 
     }

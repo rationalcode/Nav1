@@ -1,5 +1,6 @@
 package com.example.admin.nav1;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
@@ -19,11 +20,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.admin.nav1.controller.FragmentHelper;
 import com.example.admin.nav1.model.ChapterRoomDatabase;
+import com.example.admin.nav1.model.ChapterViewModel;
 import com.example.admin.nav1.model.PopulateDB;
 import com.example.admin.nav1.ui.ChapterDialogFragment;
 import com.example.admin.nav1.ui.PictureFragment;
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity
     public static TextFragment textFragment;
     public static ChapterDialogFragment chapterDialogFragment;
     public static ChapterRoomDatabase db;
+    ChapterViewModel model;
     SharedPreferences preferences;
     final String DB_CREATED = "db_room";
 
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        final FrameLayout container = findViewById(R.id.container);
+
         rvFagment = new RVFagment();
         pictureFragment = new PictureFragment();
         textFragment = new TextFragment();
@@ -78,13 +84,14 @@ public class MainActivity extends AppCompatActivity
         chapterDialogFragment = new ChapterDialogFragment();
 
 
-        String currentPreferences = getPreferences(MODE_PRIVATE).getString(DB_CREATED,"");
+        final String currentPreferences = getPreferences(MODE_PRIVATE).getString(DB_CREATED,"");
 
         if(currentPreferences.compareTo("room_db")!=0) {
 
 
             db = ChapterRoomDatabase.getDatabase(this);
             SupportSQLiteDatabase supportSQLiteDatabase = db.getOpenHelper().getWritableDatabase();
+
 
             rdc.onOpen(supportSQLiteDatabase);
 
@@ -94,6 +101,12 @@ public class MainActivity extends AppCompatActivity
             editor.commit();
         } else db = ChapterRoomDatabase.getDatabase(this);
 
+        model = ViewModelProviders.of(this).get(ChapterViewModel.class);
+
+        if (savedInstanceState==null){
+
+            fragmentHelper.replaceFragment(model.getData());
+        }
 
     }
 
@@ -105,6 +118,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
     }
 
     @Override
@@ -140,12 +154,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_camera:
 
 
+                model.getCurrentFragment(chapterDialogFragment);
                 chapterDialogFragment.show(getSupportFragmentManager(),"dialog_fragment");
 
                 break;
             case R.id.nav_gallery:
 
-
+                model.getCurrentFragment(rvFagment);
                 fragmentHelper.replaceFragment(rvFagment);
 
                 break;
@@ -163,7 +178,9 @@ public class MainActivity extends AppCompatActivity
         addButton = false;
         setText (Integer.toString(selectedValue));
 
-        fragmentHelper.replaceFragment(new TextFragment());
+        TextFragment selectTextFragment = new TextFragment();
+        model.getCurrentFragment(selectTextFragment);
+        fragmentHelper.replaceFragment(selectTextFragment);
 
         //selected item from 0
     }
