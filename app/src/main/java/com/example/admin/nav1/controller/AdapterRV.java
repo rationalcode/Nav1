@@ -22,18 +22,19 @@ import com.example.admin.nav1.ui.TextFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import static com.example.admin.nav1.MainActivity.fragmentHelper;
-
 
 
 public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
 
+    Context context;
     public static String TAG;
     private LayoutInflater inflater;
     public List<Chapter> chapters;
 
+
     public AdapterRV(Context context, List<Chapter> chapters) {
+        this.context = context;
         this.chapters = chapters;
         this.inflater = LayoutInflater.from(context);
     }

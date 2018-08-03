@@ -15,7 +15,7 @@ public class FragmentHelper extends FragmentActivity {
 
 
     private final FragmentActivity activity;
-    public FragmentTransaction fragmentTransaction;
+    FragmentTransaction fragmentTransaction;
 
     public FragmentHelper(FragmentActivity activity) {
         this.activity = activity;

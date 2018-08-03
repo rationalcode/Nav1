@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:layout_margin="5dp"
-    android:background="@android:color/holo_green_dark"
+    android:background="@drawable/base_shape"
     android:divider="@android:drawable/divider_horizontal_dark"
     android:gravity="center"
     android:orientation="horizontal">
@@ -11,10 +11,12 @@
     <TextView
         android:id="@+id/textViewNum"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="match_parent"
         android:layout_weight="3"
-        android:text="TextView" />
+        android:background="@drawable/base_circle"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/textViewChapterTitle"
