@@ -1,6 +1,7 @@
 package com.example.admin.nav1.ui;
 
 import android.app.Fragment;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,12 +18,17 @@ import com.example.admin.nav1.model.ChapterDao;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.example.admin.nav1.MainActivity.db;
+import static com.example.admin.nav1.MainActivity.metrics;
+import static com.example.admin.nav1.MainActivity.model;
 import static com.example.admin.nav1.MainActivity.recyclerView;
 
 public class RVFagment extends android.support.v4.app.Fragment {
 
-
+ViewGroup container;
 
     @Nullable
     @Override
@@ -31,11 +37,20 @@ public class RVFagment extends android.support.v4.app.Fragment {
 
 
 
+
     View view = inflater.inflate(R.layout.rv_fragment, container, false);
-        //RecyclerView recyclerView = view.findViewById(R.id.rv);
+
+    view.getLayoutParams().width = model.getWidthView();
+        //container.getLayoutParams().width = model.getWidthView();
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+
+
+        //view.getLayoutParams().width = model.getWidthView();
+
+
         recyclerView = view.findViewById(R.id.rv);
+
         recyclerView.setLayoutManager(llm);
 
         List <Chapter> chapterList = db.chapterDao().getAll();

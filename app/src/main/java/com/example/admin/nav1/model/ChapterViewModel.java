@@ -11,7 +11,8 @@ import com.example.admin.nav1.ui.TextFragment;
 
 public class ChapterViewModel extends AndroidViewModel {
 
-    public static Fragment fragment = new TextFragment();
+    private static Fragment fragment = new TextFragment();
+    private static int widthView = 0;
 
     public ChapterViewModel(@NonNull Application application) {
         super(application);
@@ -20,9 +21,17 @@ public class ChapterViewModel extends AndroidViewModel {
 
     public void getCurrentFragment(Fragment fragment){
 
-        this.fragment = fragment;
+        ChapterViewModel.fragment = fragment;
     }
 
+    public void setWidthView(int widthView) {
+        ChapterViewModel.widthView = widthView;
+    }
+
+    public int getWidthView (){
+
+        return widthView;
+    }
     public Fragment getData(){
 
         return fragment;

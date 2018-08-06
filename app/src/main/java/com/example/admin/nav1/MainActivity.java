@@ -5,6 +5,7 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.admin.nav1.controller.FragmentHelper;
+import com.example.admin.nav1.controller.Metrics;
 import com.example.admin.nav1.model.ChapterRoomDatabase;
 import com.example.admin.nav1.model.ChapterViewModel;
 import com.example.admin.nav1.model.PopulateDB;
@@ -51,7 +55,9 @@ public class MainActivity extends AppCompatActivity
     public static TextFragment textFragment;
     public static ChapterDialogFragment chapterDialogFragment;
     public static ChapterRoomDatabase db;
-    ChapterViewModel model;
+    public static Metrics metrics;
+    Configuration configuration;
+    public static ChapterViewModel model;
     SharedPreferences preferences;
     final String DB_CREATED = "db_room";
 
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity
 
         fragmentHelper = new FragmentHelper(this);
         chapterDialogFragment = new ChapterDialogFragment();
+        configuration = new Configuration();
 
 
         final String currentPreferences = getPreferences(MODE_PRIVATE).getString(DB_CREATED,"");
@@ -106,6 +113,15 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState==null){
 
             fragmentHelper.replaceFragment(model.getData());
+        }
+
+        int temp = model.getWidthView();
+        if(temp==0){
+
+//            DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+//            model.setWidthView(displayMetrics.widthPixels);
+
+        onConfigurationChanged(configuration);
         }
 
     }
@@ -183,5 +199,20 @@ public class MainActivity extends AppCompatActivity
         fragmentHelper.replaceFragment(selectTextFragment);
 
         //selected item from 0
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+
+            model.setWidthView(displayMetrics.widthPixels);
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+
+                {
+                    model.setWidthView(displayMetrics.heightPixels);
+                }
     }
 }
