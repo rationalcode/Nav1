@@ -28,7 +28,6 @@ import static com.example.admin.nav1.MainActivity.recyclerView;
 
 public class RVFagment extends android.support.v4.app.Fragment {
 
-ViewGroup container;
 
     @Nullable
     @Override
@@ -36,17 +35,11 @@ ViewGroup container;
         //return super.onCreateView(inflater, container, savedInstanceState);
 
 
-
-
     View view = inflater.inflate(R.layout.rv_fragment, container, false);
 
     view.getLayoutParams().width = model.getWidthView();
-        //container.getLayoutParams().width = model.getWidthView();
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-
-
-        //view.getLayoutParams().width = model.getWidthView();
 
 
         recyclerView = view.findViewById(R.id.rv);

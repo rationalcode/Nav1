@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
 
         fragmentHelper = new FragmentHelper(this);
         chapterDialogFragment = new ChapterDialogFragment();
-        configuration = new Configuration();
+        configuration = getResources().getConfiguration();
 
 
         final String currentPreferences = getPreferences(MODE_PRIVATE).getString(DB_CREATED,"");
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity
 
 
             db = ChapterRoomDatabase.getDatabase(this);
+
             SupportSQLiteDatabase supportSQLiteDatabase = db.getOpenHelper().getWritableDatabase();
 
 
@@ -110,18 +111,14 @@ public class MainActivity extends AppCompatActivity
 
         model = ViewModelProviders.of(this).get(ChapterViewModel.class);
 
+        if(model.getWidthView()==0){
+
+            onConfigurationChanged(configuration);
+        }
+
         if (savedInstanceState==null){
 
             fragmentHelper.replaceFragment(model.getData());
-        }
-
-        int temp = model.getWidthView();
-        if(temp==0){
-
-//            DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
-//            model.setWidthView(displayMetrics.widthPixels);
-
-        onConfigurationChanged(configuration);
         }
 
     }
@@ -205,6 +202,7 @@ public class MainActivity extends AppCompatActivity
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+
         if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
 
             model.setWidthView(displayMetrics.widthPixels);
