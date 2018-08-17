@@ -19,6 +19,7 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ScrollView;
 
 import com.example.admin.nav1.controller.FragmentHelper;
 import com.example.admin.nav1.model.ChapterRoomDatabase;
@@ -26,6 +27,7 @@ import com.example.admin.nav1.model.ChapterViewModel;
 import com.example.admin.nav1.ui.ChapterDialogFragment;
 import com.example.admin.nav1.ui.PictureFragment;
 import com.example.admin.nav1.ui.RVFagment;
+import com.example.admin.nav1.ui.ScrollViewFragment;
 import com.example.admin.nav1.ui.TextFragment;
 
 import static com.example.admin.nav1.model.ChapterRoomDatabase.rdc;
@@ -157,8 +159,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_camera:
 
 
+
                 model.getCurrentFragment(chapterDialogFragment);
                 chapterDialogFragment.show(getSupportFragmentManager(),"dialog_fragment");
+
+                //ScrollViewFragment scrollViewFragment = new ScrollViewFragment();
+                //model.getCurrentFragment(scrollViewFragment);
+                //fragmentHelper.replaceFragment(scrollViewFragment);
+
 
                 break;
             case R.id.nav_gallery:

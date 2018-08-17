@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.admin.nav1.MainActivity;
 import com.example.admin.nav1.R;
 import com.example.admin.nav1.model.Chapter;
+import com.example.admin.nav1.ui.ScrollViewFragment;
 import com.example.admin.nav1.ui.TextFragment;
 
 import java.util.ArrayList;
@@ -60,11 +61,13 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
             public void onClick(View view) {
 
 
-                TextFragment.text = Integer.toString(position);
-                TextFragment.addButton = true;
-                TextFragment textFragment = new TextFragment();
+//                TextFragment.text = Integer.toString(position);
+//                TextFragment.addButton = true;
+//                TextFragment textFragment = new TextFragment();
+//
+//                fragmentHelper.replaceFragment(textFragment);
 
-                fragmentHelper.replaceFragment(textFragment);
+                fragmentHelper.replaceFragment(new ScrollViewFragment());
 
 
                 //Toast.makeText(view.getContext(),""+ position, Toast.LENGTH_SHORT).show();

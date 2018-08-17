@@ -22,7 +22,6 @@ import static android.view.ViewGroup.LayoutParams.FILL_PARENT;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.example.admin.nav1.MainActivity.db;
-import static com.example.admin.nav1.MainActivity.metrics;
 import static com.example.admin.nav1.MainActivity.model;
 import static com.example.admin.nav1.MainActivity.recyclerView;
 
