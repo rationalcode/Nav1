@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity
     Context context;
     public static FragmentManager fragmentManager;
     public static FragmentTransaction fragmentTransaction;
-    public static RecyclerView recyclerView;
+    public RecyclerView recyclerView;
     public static FragmentHelper fragmentHelper;
-    public static RVFagment rvFagment;
+    public RVFagment rvFagment;
     public static PictureFragment pictureFragment;
-    public static TextFragment textFragment;
+    public TextFragment textFragment;
     public static ChapterDialogFragment chapterDialogFragment;
     public static ChapterRoomDatabase db;
     Configuration configuration;

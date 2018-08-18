@@ -31,7 +31,8 @@ public class AdapterRV extends RecyclerView.Adapter <AdapterRV.ViewHolder> {
     Context context;
     public static String TAG;
     private LayoutInflater inflater;
-    public List<Chapter> chapters;
+    private List<Chapter> chapters;
+
 
 
     public AdapterRV(Context context, List<Chapter> chapters) {

@@ -23,11 +23,12 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static com.example.admin.nav1.MainActivity.db;
 import static com.example.admin.nav1.MainActivity.model;
-import static com.example.admin.nav1.MainActivity.recyclerView;
+
 
 public class RVFagment extends android.support.v4.app.Fragment {
 
 
+    RecyclerView recyclerView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

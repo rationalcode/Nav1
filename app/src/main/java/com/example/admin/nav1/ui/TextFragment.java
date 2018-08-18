@@ -15,16 +15,15 @@ import com.example.admin.nav1.R;
 import com.example.admin.nav1.controller.FragmentHelper;
 
 
-import static com.example.admin.nav1.MainActivity.fragmentHelper;
-import static com.example.admin.nav1.MainActivity.recyclerView;
-import static com.example.admin.nav1.MainActivity.rvFagment;
-
 public class TextFragment extends Fragment {
 
 
     public static String text = "HELLO !";
-    public static FloatingActionButton fab;
+    public FloatingActionButton fab;
     public static boolean addButton = false;
+    FragmentHelper fragmentHelper;
+    RVFagment rvFagment = new RVFagment();
+
 
     public static void setText(String text) {
         TextFragment.text = text;
